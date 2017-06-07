@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Pagination Bar -->
+<div th:fragment='pagination'>
+  <div th:if="${not (page eq null)}">
+    <ul class="pagination (page)">
+      <li th:class="${page.number eq 0} ? 'disabled' : ''">
+        <a th:if="${not page.firstPage}"
+           th:href="@{${'/contacts'}(page=${page.number-1},size=${page.size})}">Previous</a>
+        <a th:if="${page.firstPage}" href="javascript:void(0);">Previous</a>
+      </li>
+      <li th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}"
+          th:class="${page.number eq pageNo}? 'active' : ''">
+        <a th:if="${page.number  eq pageNo}" href="javascript:void(0);">
+          <span th:text="${pageNo + 1}"></span>
+        </a>
+        <a th:if="${not (page.number  eq pageNo)}" th:href="@{${'/'}(page=${pageNo},size=${page.size})}">
+          <span th:text="${pageNo + 1}"></span>
+        </a>
+      </li>
+      <li th:class="${page.number + 1 ge page.totalPages} ? 'disabled' : ''">
+        <a th:if="${not page.lastPage}" th:href="@{${'/'}(page=${page.number+1},size=${page.size})}">Next</a>
+        <a th:if="${page.lastPage}" href="javascript:void(0);">Next</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
