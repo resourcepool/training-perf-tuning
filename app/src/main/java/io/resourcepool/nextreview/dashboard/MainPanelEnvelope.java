@@ -1,8 +1,8 @@
 package io.resourcepool.nextreview.dashboard;
 
-import io.resourcepool.nextreview.model.Person;
-import io.resourcepool.nextreview.model.Review;
-import io.resourcepool.nextreview.model.Team;
+import io.resourcepool.nextreview.common.model.Person;
+import io.resourcepool.nextreview.common.model.Review;
+import io.resourcepool.nextreview.common.model.Team;
 import org.springframework.data.domain.Page;
 
 /**

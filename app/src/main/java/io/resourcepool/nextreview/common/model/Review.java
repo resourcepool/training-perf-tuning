@@ -1,4 +1,4 @@
-package io.resourcepool.nextreview.model;
+package io.resourcepool.nextreview.common.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="navbar" class="navbar navbar-default navbar-static-top container-fluid" role="navigation" style="margin-bottom: 0">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">NextReview</a>
+  </div>
+  <!-- /.navbar-header -->
+
+  <ul class="nav navbar-top-links navbar-right">
+    <li class="dropdown">
+      <a class="dropdown-toggle navlink" data-toggle="dropdown" href="#">
+        <i class="fa fa-gear fa-fw"></i> Manage Reviews <i class="fa fa-caret-down"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-user">
+        <li><a href="add_team.html"><i class="fa fa-users fa-fw"></i> Add Team</a>
+        </li>
+        <li><a href="add_person.html"><i class="fa fa-user fa-fw"></i> Add Person</a>
+        </li>
+        <li><a href="add_review.html"><i class="fa fa-calendar fa-fw"></i> Create Review</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</body>
+</html>

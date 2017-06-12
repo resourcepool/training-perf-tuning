@@ -1,6 +1,6 @@
 package io.resourcepool.nextreview.persistence;
 
-import io.resourcepool.nextreview.model.Review;
+import io.resourcepool.nextreview.common.model.Review;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.ZonedDateTime;
