@@ -1,5 +1,11 @@
 package io.resourcepool.nextreview.review;
 
+import io.resourcepool.nextreview.common.validation.Future;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -10,11 +16,18 @@ import java.time.LocalTime;
  */
 public class ReviewFormDto {
   private Long id;
+  @Size(min = 3, max = 64)
   private String name;
+  @Size(min = 3, max = 255)
   private String description;
   // Chosen team
+  @Min(value = 1, message = "a team must be selected")
   private Long teamId;
+  @Future
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate scheduledDate;
+  
+  @NotNull(message = "this field is mandatory")
   private LocalTime scheduledTime;
 
   public Long getId() {

@@ -2,7 +2,7 @@
 <body>
 <!-- Pagination Bar -->
 <div th:fragment='pagination'>
-  <div th:if="${not (page eq null)}">
+  <div th:if="${not (page eq null or page.totalPages lt 1)}">
     <ul class="pagination (page)">
       <li th:class="${page.number eq 0} ? 'disabled' : ''">
         <a th:if="${not page.first}"

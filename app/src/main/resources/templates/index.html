@@ -89,14 +89,14 @@
                 <i class="fa fa-calendar fa-5x"></i>
               </div>
               <div class="col-xs-9 text-right">
-                <div class="huge"><p th:text="${panel.scheduledReviewsCount}"/></div>
+                <div class="huge"><span th:text="${panel.scheduledReviewsCount}"/></div>
                 <div class="huge-label">Scheduled Reviews</div>
               </div>
             </div>
           </div>
           <a href="add_review.html">
             <div class="panel-footer">
-              <span class="pull-left">Create Review</span>
+              <span class="pull-left">Schedule Review</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
               <div class="clearfix"></div>
             </div>
@@ -144,7 +144,7 @@
                     </tr>
                     </tbody>
                   </table>
-                  <div th:if="${panel.members == null or #lists.isEmpty(panel.members)}" class="text-center">
+                  <div th:if="${panel.members == null or panel.members.totalPages lt 1}" class="text-center">
                     No members registered yet. Wanna do something about it?
                     <br/><br/>
                   </div>
@@ -174,13 +174,15 @@
             </div>
             <table class="table table-striped" th:if="${panel.nextReviews != null}">
               <tr th:each="review : ${panel.nextReviews}">
-                <td><span th:text="${review.name}"/></td>
-                <td><span th:text="${review.team.name}"/></td>
-                <td class="text-right"><span class="text-muted small"><span
-                    th:text="${review.scheduledDateTime}"/></span></td>
+                <td>
+                  <span th:text="${review.name}" class="review-name"/>
+                  <br/>
+                  <span th:text="${review.team.name}" class="review-team"/>
+                </td>
+                <td class="text-right"><span class="text-muted small"><span th:text="${{review.scheduledDateTime}}"/></span></td>
               </tr>
             </table>
-            <a href="#" class="btn btn-default btn-block">Schedule a Review</a>
+            <a href="/add_review.html" class="btn btn-default btn-block">Schedule Review</a>
           </div>
           <!-- /.panel-body -->
         </div>
