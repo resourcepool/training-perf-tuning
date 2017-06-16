@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,7 @@ public class MainPanelController {
   @GetMapping
   public String get(@RequestParam(defaultValue = "0") int page, Model model) {
     LOGGER.info("Getting Main Panel");
-    model.addAttribute(ATTR_ENVELOPE, service.getMainPanel(new PageRequest(page, PAGE_SIZE)));
+    model.addAttribute(ATTR_ENVELOPE, service.getMainPanel(new PageRequest(page, PAGE_SIZE, Sort.Direction.ASC, "firstName")));
     return "index";
   }
 }

@@ -6,10 +6,10 @@
     <ul class="pagination (page)">
       <li th:class="${page.number eq 0} ? 'disabled' : ''">
         <a th:if="${not page.first}"
-           th:href="@{${'/contacts'}(page=${page.number-1},size=${page.size})}">Previous</a>
+           th:href="@{${'/'}(page=${page.number-1},size=${page.size})}">Previous</a>
         <a th:if="${page.first}" href="javascript:void(0);">Previous</a>
       </li>
-      <li th:each="pageNo : ${#numbers.sequence(0, page.totalPages)}"
+      <li th:each="pageNo : ${#numbers.sequence(0, T(Math).max(0, page.totalPages - 1))}"
           th:class="${page.number eq pageNo}? 'active' : ''">
         <a th:if="${page.number  eq pageNo}" href="javascript:void(0);">
           <span th:text="${pageNo + 1}"></span>

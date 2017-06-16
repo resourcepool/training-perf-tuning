@@ -122,7 +122,7 @@
                     <tr>
                       <th>Name</th>
                       <th>Email</th>
-                      <th>Team</th>
+                      <th>Teams</th>
                       <th class="text-right">Action</th>
                     </tr>
                     </thead>
@@ -131,9 +131,7 @@
                       <td><span th:text="${member.firstName} + ' ' + ${member.lastName}"/></td>
                       <td><span th:text="${member.email}"/></td>
                       <td>
-                        <p th:each="team : ${member.teams}">
-                          <span th:text="${team.name}"/>
-                        </p>
+                        <span class="team-tag" th:each="team : ${member.teams}" th:text="${team.name}"/>&nbsp;
                       </td>
                       <td class="text-right">
                         <a th:href="'edit_person.html?id=' + ${member.id}" class="btn btn-sm btn-warning"><i

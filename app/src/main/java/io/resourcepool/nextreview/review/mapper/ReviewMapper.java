@@ -30,9 +30,4 @@ public class ReviewMapper implements Mapper<Review, ReviewFormDto> {
       .build();
   }
 
-  @Override
-  public ReviewFormDto to(Review o) {
-    // TODO
-    return null;
-  }
 }

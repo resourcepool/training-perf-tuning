@@ -11,7 +11,10 @@
 
   <!-- Bootstrap CSS -->
   <link href="../css/bootstrap.min.css" rel="stylesheet"/>
-
+  
+  <!-- Tokenize2 CSS -->
+  <link href="../css/tokenize2.min.css" rel="stylesheet" type="text/css"/>
+  
   <!-- Custom CSS -->
   <link href="../css/style.css" rel="stylesheet"/>
 
@@ -48,7 +51,15 @@
                     <input type="text" class="input-lg form-control" id="name" placeholder="Name" th:field="*{name}"/>
                     <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Invalid Name</div>
                   </div>
-
+                  <div class="form-group">
+                    <label for="members">Members</label>
+                    <br/>
+                    <select id="members" th:field="*{members}" multiple="multiple">
+                      <option th:each="member : ${members}" th:text="${member.firstName} + ' ' + ${member.lastName}" th:value="${member.id}" th:selected="${team.members != null and #lists.contains(team.members, member.id)}"></option>
+                    </select>
+                    <br/>
+                    <span th:if="${#fields.hasErrors('members')}" th:errors="*{members}" class="error">Invalid Members</span>
+                  </div>
                   <div class="text-right">
                     <button type="submit" class="btn btn-lg btn-primary">Save</button>
                   </div>
@@ -76,7 +87,15 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="../js/bootstrap.min.js"></script>
-
+<!-- Tokenize 2 Members JavaScript -->
+<script src="../js/tokenize2.min.js"></script>
+<!-- Custom Script to load available members -->
+<script th:inline="javascript">
+  $(document).ready(function() {
+    $("#members").tokenize2();
+    $(".tokens-container").addClass("input-lg");
+  });
+</script>
 </body>
 
 </html>

@@ -44,15 +44,17 @@ public class AddTeamController {
   public String get(@RequestParam(defaultValue = "") String search, Model model) {
     LOGGER.info("Getting Add Team Panel");
     model.addAttribute(ATTR_TEAM, new TeamFormDto());
-    model.addAttribute(ATTR_MEMBERS, personService.findAll(search.trim()));
+    model.addAttribute(ATTR_MEMBERS, personService.findAll());
     return "add_team";
   }
   
   @PostMapping
-  public String add(@Valid @ModelAttribute(ATTR_TEAM) TeamFormDto team, BindingResult bindingResult) {
+  public String add(@Valid @ModelAttribute(ATTR_TEAM) TeamFormDto team, BindingResult bindingResult, Model model) {
     LOGGER.info("Attempt to Add Team");
     if (bindingResult.hasErrors()) {
       LOGGER.warn("Error while adding team: {}", bindingResult.getAllErrors());
+      model.addAttribute(ATTR_TEAM, team);
+      model.addAttribute(ATTR_MEMBERS, personService.findAll());
       return "add_team";
     }
     teamService.save(teamMapper.from(team));

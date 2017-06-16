@@ -28,6 +28,10 @@ public class PersonService {
     this.personRepository = personRepository;
   }
   
+  public Iterable<Person> findAll() {
+    return personRepository.findAll();
+  }
+  
   public List<Person> findAll(String searchString) {
     if (searchString.length() < MIN_SEARCH_LENGTH) {
       return null;
@@ -61,5 +65,9 @@ public class PersonService {
       }
     }
     return new ArrayList<>(people);
+  }
+
+  public void save(Person person) {
+    personRepository.save(person);
   }
 }

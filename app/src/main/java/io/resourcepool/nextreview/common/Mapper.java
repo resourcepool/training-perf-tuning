@@ -9,8 +9,13 @@ import java.util.List;
  * @author Loïc Ortola on 12/06/2017
  */
 public interface Mapper<T, U> {
-  T from (U o);
-  U to (T o);
+  
+  default T from (U o) {
+    throw new UnsupportedOperationException();
+  }
+  default U to (T o) {
+    throw new UnsupportedOperationException();
+  }
   
   default List<T> from (List<U> os) {
     if (os == null || os.isEmpty()) {

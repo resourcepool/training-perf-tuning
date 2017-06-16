@@ -83,6 +83,19 @@ body {
   .error {
     color: #963434;
   }
+  
+  .team-tag {
+    padding: 3px 6px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    color: #333;
+    background-color: #ddd;
+    border-color: #c1c1c1;
+    display: inline-block;
+  }
 
   .footer {
     bottom: 0;

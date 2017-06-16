@@ -1,9 +1,12 @@
 package io.resourcepool.nextreview.common.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
@@ -18,8 +21,20 @@ public class Team {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String name;
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER, targetEntity = Person.class)
+  @JoinTable(
+    name="person_team", 
+    joinColumns=@JoinColumn(name="team_id", referencedColumnName="id"),
+    inverseJoinColumns=@JoinColumn(name="person_id", referencedColumnName="id"))
   private List<Person> members;
+  
+  public Team() {
+    
+  }
+  
+  public Team(Long id) {
+    this.id = id;
+  }
 
   public Long getId() {
     return id;

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
@@ -20,8 +22,21 @@ public class Person {
   private String firstName;
   private String lastName;
   private String email;
+  
   @ManyToMany
+  @JoinTable(
+    name = "person_team",
+    joinColumns = @JoinColumn(name="person_id", referencedColumnName="id"),
+    inverseJoinColumns = @JoinColumn(name="team_id", referencedColumnName="id"))
   private List<Team> teams;
+  
+  public Person() {
+    
+  }
+  
+  public Person(Long id) {
+    this.id = id;
+  }
 
   public Long getId() {
     return id;

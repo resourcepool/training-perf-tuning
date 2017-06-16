@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html th:lang="${#locale}" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
-    <title>When Is My Code Review?</title>
+    <title>NextReview</title>
 
     <!-- Bootstrap CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
 
+    <!-- Tokenize2 CSS -->
+    <link href="../css/tokenize2.min.css" rel="stylesheet" type="text/css"/>
+    
     <!-- Custom CSS -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet"/>
 
     <!-- Custom Fonts -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -29,7 +32,7 @@
         <div id="page-wrapper" class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Ajouter un membre</h1>
+                    <h1 class="page-header">Add Member</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -41,25 +44,35 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <form action="" method="post" class="">
-                                        <div class="form-group">
-                                            <label for="name">Nom</label>
-                                            <input type="text" class="input-lg form-control" id="name" placeholder="Nom">
+                                    <form action="#" th:action="@{/add_person.html}" th:object="${person}" method="post" class="">
+                                        <div class="form-inline">
+                                            <label for="firstName">First name</label>
+                                            <br/>
+                                            <input type="text" class="input-lg form-control" id="firstName" placeholder="First Name" th:field="*{firstName}" size="41"/>
+                                            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error">Invalid Name</span>
+                                            <br/>
+                                            <label for="lastName">Last name</label>
+                                            <br/>
+                                            <input type="text" class="input-lg form-control" id="lastName" placeholder="Last Name" th:field="*{lastName}" size="41"/>
+                                            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error">Invalid Name</span>
+                                        </div>
+                                        <div class="form-inline">
+                                            <label for="email">Email</label>
+                                            <br/>
+                                            <input type="email" class="input-lg form-control" id="email" placeholder="Email" th:field="*{email}" size="41"/>
+                                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">Invalid Email</span>
                                         </div>
                                         <div class="form-group">
-                                            <label for="email">Adresse Email</label>
-                                            <input type="email" class="input-lg form-control" id="email" placeholder="Adresse Email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="promotion">Promotion</label>
-                                            <select class="input-lg form-control" id="promotion">
-                                                <option>Février</option>
-                                                <option>Mars</option>
+                                            <label for="teams">Teams</label>
+                                            <br/>
+                                            <select id="teams" th:field="*{teams}" multiple="multiple">
+                                                <option th:each="team : ${teams}" th:text="${team.name}" th:value="${team.id}" th:selected="${#lists.contains(person.teams, team.id)}"></option>
                                             </select>
+                                            <br/>
+                                            <span th:if="${#fields.hasErrors('teams')}" th:errors="*{teams}" class="error">Invalid Team</span>
                                         </div>
-
                                         <div class="text-right">
-                                            <button type="submit" class="btn btn-lg btn-primary">Enregistrer</button>
+                                            <button type="submit" class="btn btn-lg btn-primary">Save</button>
                                         </div>
                                     </form>
                                 </div>
@@ -85,7 +98,15 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
-
+    <!-- Tokenize 2 Teams JavaScript -->
+    <script src="../js/tokenize2.min.js"></script>
+    <!-- Custom Script to load available teams -->
+    <script th:inline="javascript">
+      $(document).ready(function() {
+        $("#teams").tokenize2();
+        $(".tokens-container").addClass("input-lg");
+      });
+    </script>
 </body>
 
 </html>
