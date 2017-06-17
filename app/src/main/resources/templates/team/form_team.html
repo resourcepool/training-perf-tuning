@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment='form_team(action, edit)'>
+  <div class="row">
+    <div class="col-xs-12">
+      <form action="#" th:action="${action}" th:object="${team}" method="post" class="">
+        <input type="hidden" class="input-lg form-control" id="id" th:field="*{id}"/>
+        <div class="text-right" th:if="${edit}" data-toggle="modal" id="deleteEntity" data-target="#deleteModal"><span
+            class="btn-round btn-lg btn-danger "><i class="fa fa-trash fa-fw"/></span></div>
+        <div class="form-group">
+          <label for="name">Team Codename</label>
+          <input type="text" class="input-lg form-control" id="name" placeholder="Name" th:field="*{name}"/>
+          <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Invalid Name</div>
+        </div>
+        <div class="form-group">
+          <label for="members">Members</label>
+          <br/>
+          <select id="members" th:field="*{members}" multiple="multiple">
+            <option th:each="member : ${members}" th:text="${member.firstName} + ' ' + ${member.lastName}"
+                    th:value="${member.id}"
+                    th:selected="${team.members != null and #lists.contains(team.members, member.id)}"></option>
+          </select>
+          <br/>
+          <span th:if="${#fields.hasErrors('members')}" th:errors="*{members}" class="error">Invalid Members</span>
+        </div>
+        <div class="text-right">
+          <button type="submit" class="btn btn-lg btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.panel-body -->
+</body>
+</html>

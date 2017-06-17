@@ -21,41 +21,41 @@ import javax.validation.Valid;
  *
  * @author Loïc Ortola on 11/06/2017
  */
-@RequestMapping({"/add_team.html"})
+@RequestMapping({"/edit_team.html"})
 @Controller
-public class AddTeamController {
+public class EditTeamController {
 
   private static final String ATTR_MEMBERS = "members";
   private static final String ATTR_TEAM = "team";
-  private static final Logger LOGGER = LoggerFactory.getLogger(AddTeamController.class);
-  
+  private static final Logger LOGGER = LoggerFactory.getLogger(EditTeamController.class);
+
   private final TeamService teamService;
   private final PersonService personService;
   private final TeamMapper teamMapper;
 
   @Autowired
-  public AddTeamController(TeamService teamService, PersonService personService, TeamMapper teamMapper) {
+  public EditTeamController(TeamService teamService, PersonService personService, TeamMapper teamMapper) {
     this.teamService = teamService;
     this.personService = personService;
     this.teamMapper = teamMapper;
   }
 
   @GetMapping
-  public String get(@RequestParam(defaultValue = "") String search, Model model) {
-    LOGGER.info("Getting Add Team Panel");
-    model.addAttribute(ATTR_TEAM, new TeamFormDto());
+  public String get(@RequestParam Long id, Model model) {
+    LOGGER.info("Getting Edit Team Panel");
+    model.addAttribute(ATTR_TEAM, teamMapper.to(teamService.get(id)));
     model.addAttribute(ATTR_MEMBERS, personService.getAll());
-    return "add_team";
+    return "edit_team";
   }
-  
+
   @PostMapping
   public String add(@Valid @ModelAttribute(ATTR_TEAM) TeamFormDto team, BindingResult bindingResult, Model model) {
-    LOGGER.info("Attempt to Add Team");
+    LOGGER.info("Attempt to Update Team");
     if (bindingResult.hasErrors()) {
-      LOGGER.warn("Error while adding team: {}", bindingResult.getAllErrors());
+      LOGGER.warn("Error while updating team: {}", bindingResult.getAllErrors());
       model.addAttribute(ATTR_TEAM, team);
       model.addAttribute(ATTR_MEMBERS, personService.getAll());
-      return "add_team";
+      return "edit_team";
     }
     teamService.save(teamMapper.from(team));
     return "redirect:/";

@@ -110,4 +110,17 @@ body {
 
   }
 
+  .selectable {
+    :hover {
+      cursor: pointer;
+      .btn-edit {
+        visibility: visible;
+      }
+    }
+    .btn-edit {
+      visibility: hidden;
+    }
+    
+  }
+
 }

@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment='widget_reviews'>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="fa fa-calendar fa-fw"></i> Scheduled Reviews
+    </div>
+    <div class="panel-body">
+      <div th:if="${panel.nextReviews == null or #lists.isEmpty(panel.nextReviews)}" class="text-center">
+        No review currently scheduled
+        <br/><br/>
+      </div>
+      <table class="table table-hover table-striped" th:if="${panel.nextReviews != null}">
+        <tr th:each="review : ${panel.nextReviews}" class="selectable" th:onclick="'editReview(' + ${review.id} + ')'">
+          <td>
+            <span th:text="${review.name}" class="review-name"/>
+            <br/>
+            <span th:text="${review.team.name}" class="review-team"/>
+          </td>
+          <td class="text-right">
+            <div style="position:relative;">
+              <div style="position:absolute; top:0; right:0;">
+                <span th:text="${{review.scheduledDateTime}}"></span>
+              </div>
+              <div style="position:absolute; top:0; right:0;">
+                <span class="btn btn-sm btn-warning btn-edit"><i class="fa fa-pencil"></i> Edit</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <a href="/add_review.html" class="btn btn-default btn-block">Schedule Review</a>
+    </div>
+    <!-- /.panel-body -->
+  </div>
+</div>
+</body>
+</html>

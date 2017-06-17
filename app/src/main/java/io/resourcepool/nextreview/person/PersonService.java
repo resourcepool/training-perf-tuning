@@ -28,11 +28,11 @@ public class PersonService {
     this.personRepository = personRepository;
   }
   
-  public Iterable<Person> findAll() {
+  public Iterable<Person> getAll() {
     return personRepository.findAll();
   }
   
-  public List<Person> findAll(String searchString) {
+  public List<Person> getAll(String searchString) {
     if (searchString.length() < MIN_SEARCH_LENGTH) {
       return null;
     }
@@ -69,5 +69,13 @@ public class PersonService {
 
   public void save(Person person) {
     personRepository.save(person);
+  }
+
+  public Person get(Long id) {
+    return personRepository.findOne(id);
+  }
+
+  public void delete(Long id) {
+    personRepository.delete(id);
   }
 }

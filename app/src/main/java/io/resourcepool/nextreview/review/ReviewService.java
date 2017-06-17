@@ -22,5 +22,14 @@ public class ReviewService {
   
   public void save(Review review) {
     reviewRepository.save(review);
-  } 
+  }
+
+  public Review get(Long id) {
+    return reviewRepository.findOne(id);
+  }
+
+  public void delete(Long id) {
+    reviewRepository.delete(id);
+  }
+
 }

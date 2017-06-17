@@ -11,19 +11,19 @@ import java.util.List;
  * @author Loïc Ortola on 11/06/2017
  */
 public class TeamFormDto {
-  private Long teamId;
+  private Long id;
   @NotEmpty
   @Size(min = 3, max = 64)
   private String name;
   @NotEmpty
   private List<Long> members;
   
-  public Long getTeamId() {
-    return teamId;
+  public Long getId() {
+    return id;
   }
 
-  public void setTeamId(Long teamId) {
-    this.teamId = teamId;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getName() {

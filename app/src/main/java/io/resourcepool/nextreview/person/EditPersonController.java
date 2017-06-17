@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -20,42 +21,42 @@ import javax.validation.Valid;
  *
  * @author Loïc Ortola on 11/06/2017
  */
-@RequestMapping({"/add_person.html"})
+@RequestMapping({"/edit_person.html"})
 @Controller
-public class AddPersonController {
+public class EditPersonController {
 
   private static final String ATTR_TEAMS = "teams";
   private static final String ATTR_PERSON = "person";
-  private static final Logger LOGGER = LoggerFactory.getLogger(AddPersonController.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(EditPersonController.class);
   
   private final TeamService teamService;
   private final PersonService personService;
   private final PersonMapper personMapper;
   
   @Autowired
-  public AddPersonController(TeamService teamService, PersonService personService, PersonMapper personMapper) {
+  public EditPersonController(TeamService teamService, PersonService personService, PersonMapper personMapper) {
     this.personService = personService;
     this.teamService = teamService;
     this.personMapper = personMapper;
   }
 
   @GetMapping
-  public String get(Model model) {
-    LOGGER.info("Getting Add Person Panel");
-    model.addAttribute(ATTR_PERSON, new PersonFormDto());
+  public String get(@RequestParam Long id, Model model) {
+    LOGGER.info("Getting Edit Person Panel");
+    model.addAttribute(ATTR_PERSON, personMapper.to(personService.get(id)));
     model.addAttribute(ATTR_TEAMS, teamService.getAll());
-    return "add_person";
+    return "edit_person";
     
   }
 
   @PostMapping
   public String add(@Valid @ModelAttribute(ATTR_PERSON) PersonFormDto person, BindingResult bindingResult, Model model) {
-    LOGGER.info("Attempt to Add Person");
+    LOGGER.info("Attempt to Update Person");
     if (bindingResult.hasErrors()) {
-      LOGGER.warn("Error while adding person: {}", bindingResult.getAllErrors());
+      LOGGER.warn("Error while updating person: {}", bindingResult.getAllErrors());
       model.addAttribute(ATTR_PERSON, person);
       model.addAttribute(ATTR_TEAMS, teamService.getAll());
-      return "add_person";
+      return "edit_person";
     }
     personService.save(personMapper.from(person));
     return "redirect:/";

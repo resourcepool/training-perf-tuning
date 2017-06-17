@@ -24,4 +24,9 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
    * @return the count of remaining reviews
    */
   Long countByScheduledDateTimeAfter(ZonedDateTime scheduledDateTime);
+
+  /**
+   * @param id the team id
+   */
+  void deleteByTeamId(Long id);
 }

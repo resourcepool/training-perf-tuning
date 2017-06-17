@@ -9,15 +9,8 @@
 
   <title>NextReview</title>
 
-  <!-- Bootstrap CSS -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet"/>
-
-  <!-- Custom CSS -->
-  <link href="../css/style.css" rel="stylesheet"/>
-
-  <!-- Custom Fonts -->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        type="text/css"/>
+  <!-- Project common stylesheets -->
+  <block th:replace="fragments/stylesheets"/>
 
 </head>
 
@@ -123,21 +116,18 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Teams</th>
-                      <th class="text-right">Action</th>
+                      <th class="text-right"></th>
                     </tr>
                     </thead>
                     <tbody th:if="${panel.members != null}">
-                    <tr th:each="member : ${panel.members.content}">
+                    <tr th:each="member : ${panel.members.content}" class="selectable" th:onclick="'editPerson(' + ${member.id} + ')'">
                       <td><span th:text="${member.firstName} + ' ' + ${member.lastName}"/></td>
                       <td><span th:text="${member.email}"/></td>
                       <td>
                         <span class="team-tag" th:each="team : ${member.teams}" th:text="${team.name}"/>&nbsp;
                       </td>
                       <td class="text-right">
-                        <a th:href="'edit_person.html?id=' + ${member.id}" class="btn btn-sm btn-warning"><i
-                            class="fa fa-pencil"></i> Edit</a>
-                        <a th:href="'delete_person.html?id=' + ${member.id}" class="btn btn-sm btn-danger"><i
-                            class="fa fa-trash"></i> Remove</a>
+                        <span class="btn btn-sm btn-warning btn-edit"><i class="fa fa-pencil"></i> Edit</span>
                       </td>
                     </tr>
                     </tbody>
@@ -161,52 +151,8 @@
       </div>
       <!-- /.col-lg-8 -->
       <div class="col-lg-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <i class="fa fa-calendar fa-fw"></i> Scheduled Reviews
-          </div>
-          <div class="panel-body">
-            <div th:if="${panel.nextReviews == null or #lists.isEmpty(panel.nextReviews)}" class="text-center">
-              No review currently scheduled
-              <br/><br/>
-            </div>
-            <table class="table table-striped" th:if="${panel.nextReviews != null}">
-              <tr th:each="review : ${panel.nextReviews}">
-                <td>
-                  <span th:text="${review.name}" class="review-name"/>
-                  <br/>
-                  <span th:text="${review.team.name}" class="review-team"/>
-                </td>
-                <td class="text-right"><span class="text-muted small"><span th:text="${{review.scheduledDateTime}}"/></span></td>
-              </tr>
-            </table>
-            <a href="/add_review.html" class="btn btn-default btn-block">Schedule Review</a>
-          </div>
-          <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <i class="fa fa-users fa-fw"></i> Team Management
-          </div>
-          <!-- /.panel-heading -->
-          <div class="panel-body">
-            <div class="list-group" th:if="${panel.teams != null and not #lists.isEmpty(panel.teams)}">
-              <a href="#" class="list-group-item" th:each="team : ${panel.teams}">
-                <i class="fa fa-users fa-fw"></i> <span th:text="${team.name}"/>
-                <span class="pull-right text-muted small"><em><span th:text="${#lists.size(team.members)}"/> members</em></span>
-              </a>
-            </div>
-            <div th:if="${panel.teams == null or #lists.isEmpty(panel.teams)}" class="text-center">
-              There are no teams. None.
-              <br/><br/>
-            </div>
-            <!-- /.list-group -->
-            <a href="#" class="btn btn-default btn-block">Add a Team</a>
-          </div>
-          <!-- /.panel-body -->
-        </div>
+        <div th:replace="dashboard/widget_reviews"/>
+        <div th:replace="dashboard/widget_teams"/>
         <!-- /.panel -->
       </div>
       <!-- /.col-lg-4 -->
@@ -219,11 +165,20 @@
 <!-- /#wrapper -->
 <footer th:replace="fragments/footer"/>
 
-<!-- jQuery -->
-<script src="../js/jquery-3.1.1.min.js"></script>
+<!-- Project common scripts -->
+<block th:replace="fragments/scripts"/>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
+<script th:inline="javascript">
+  var editPerson = function(id) {
+    document.location.href= 'edit_person.html?id=' + id;
+  }
+  var editReview = function(id) {
+    document.location.href= 'edit_review.html?id=' + id;
+  }
+  var editTeam = function(id) {
+    document.location.href= 'edit_team.html?id=' + id;
+  }
+</script>
 
 </body>
 

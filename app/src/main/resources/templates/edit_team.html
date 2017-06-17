@@ -12,11 +12,8 @@
   <!-- Project common stylesheets -->
   <block th:replace="fragments/stylesheets"/>
   
-  <!-- DatePicker CSS -->
-  <link href="../css/bootstrap-datepicker3.css" rel="stylesheet"/>
-  
-  <!-- TimePicker CSS -->
-  <link href="../css/jquery.timepicker.css" rel="stylesheet"/>
+  <!-- Tokenize2 CSS -->
+  <link href="../css/tokenize2.min.css" rel="stylesheet" type="text/css"/>
   
 </head>
 
@@ -30,7 +27,7 @@
   <div id="page-wrapper" class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="page-header">Create review</h1>
+        <h1 class="page-header">Create a Team</h1>
       </div>
       <!-- /.col-lg-12 -->
     </div>
@@ -40,7 +37,7 @@
         <!-- /.panel -->
         <div class="panel panel-default">
           <div class="panel-body">
-            <div th:replace="review/form_review(@{/add_review.html})"/>
+            <div th:replace="team/form_team :: form_team(@{/edit_team.html}, true)"/>
             <!-- /.row -->
           </div>
           <!-- /.panel-body -->
@@ -57,26 +54,23 @@
 <!-- /#wrapper -->
 <footer th:replace="fragments/footer"/>
 
+<!-- Delete modal -->
+<div th:replace="fragments/modal_delete :: modal_delete(${team.name})"/>
+
 <!-- Project common scripts -->
 <block th:replace="fragments/scripts"/>
 
-<!-- TimePicker -->
-<script src="../js/jquery.timepicker.min.js"></script>
-<script src="../js/bootstrap-datepicker.min.js"></script>
-<script src="../js/bootstrap-datepicker.fr.js" charset="UTF-8"></script>
+<!-- Tokenize 2 Members JavaScript -->
+<script src="../js/tokenize2.min.js"></script>
+<!-- Custom Script to load available members -->
 <script th:inline="javascript">
-  var locale = [[${#locale}]];
-  var date = getBestTimeTomorrow();
-  $('#time').timepicker({ scrollDefault: 'now' });
-  $('#time').timepicker('setTime', date);
-  $('#date').datepicker({
-    toggleActive: true,
-    todayHighlight: true,
-    language: locale.language
+  $(document).ready(function() {
+    $("#members").tokenize2();
+    $(".tokens-container").addClass("input-lg");
   });
-  $('#date').datepicker('setDate', date);
-  
 </script>
+
+<th:block th:replace="fragments/modal_delete :: modal_delete_script('/api/team/' + ${team.id})"/>
 
 </body>
 

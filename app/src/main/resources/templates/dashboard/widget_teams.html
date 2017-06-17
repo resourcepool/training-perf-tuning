@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment='widget_reviews'>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="fa fa-users fa-fw"></i> Team Management
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+      <div class="list-group" th:if="${panel.teams != null and not #lists.isEmpty(panel.teams)}">
+        <a href="#" class="list-group-item selectable" th:each="team : ${panel.teams}" th:onclick="'editTeam(' + ${team.id} + ')'">
+          <i class="fa fa-users fa-fw"></i> <span th:text="${team.name}"/>
+          <span class="pull-right" style="position:relative; width: 100px;">
+            <div style="position:absolute; top:0; right:0;">
+              <span class="pull-right text-muted small"><em><span th:text="${#lists.size(team.members)}"/> members</em></span>
+            </div>
+            <div style="position:absolute; top:-4px; right:0;">
+              <span class="btn btn-sm btn-warning btn-edit"><i class="fa fa-pencil"></i> Edit</span>
+            </div>
+          </span>
+        </a>
+      </div>
+      <div th:if="${panel.teams == null or #lists.isEmpty(panel.teams)}" class="text-center">
+        There are no teams. None.
+        <br/><br/>
+      </div>
+      <!-- /.list-group -->
+      <a href="#" class="btn btn-default btn-block">Add a Team</a>
+    </div>
+    <!-- /.panel-body -->
+  </div>
+</div>
+</body>
+</html>

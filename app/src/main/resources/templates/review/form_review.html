@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment='form_review(action, edit)'>
+  <div class="row">
+    <div class="col-xs-12">
+      <form action="#" th:action="${action}" th:object="${review}" method="post" class="">
+        <input type="hidden" class="input-lg form-control" id="id" th:field="*{id}"/>
+        <div class="text-right" th:if="${edit}" data-toggle="modal" id="deleteEntity" data-target="#deleteModal"><span class="btn-round btn-lg btn-danger "><i class="fa fa-trash fa-fw"/></span></div>
+        <div class="form-inline">
+          <label for="name">Name</label>
+          <br/>
+          <input type="text" class="input-lg form-control" id="name" placeholder="Name" th:field="*{name}" size="41"/>
+          <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Invalid Name</span>
+        </div>
+        <div class="form-inline">
+          <label for="name">Description</label>
+          <br/>
+          <textarea type="text" class="input-lg form-control" id="description" placeholder="Description"
+                    th:field="*{description}" cols="40" rows="3"/>
+          <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                class="error">Invalid Description</span>
+        </div>
+        <div class="form-inline">
+          <label for="date">Date</label>
+          <br/>
+          <input type="text" class="input-lg form-control" id="date" placeholder="Date"
+                 th:field="*{scheduledDate}" data-date-start-date="0d" data-date-format="yyyy-mm-dd" size="18"/>
+          <input type="text" class="input-lg form-control" id="time" placeholder="Time"
+                 th:text="${{scheduledTime}}" th:field="*{scheduledTime}" size="18"/>
+          <span th:if="${#fields.hasErrors('scheduledDate')}" th:errors="*{scheduledDate}"
+                class="error">Invalid Date</span>
+          <span th:if="${#fields.hasErrors('scheduledTime')}" th:errors="*{scheduledTime}"
+                class="error">Invalid Time</span>
+        </div>
+        <div class="form-inline">
+          <label for="id">Team</label>
+          <br/>
+          <select class="input-lg form-control" id="teamId" th:field="*{teamId}">
+            <option value="0"> - Select Team -</option>
+            <option th:each="team : ${teams}" th:text="${team.name}" th:value="${team.id}"></option>
+          </select>
+          <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="error">Invalid Team</span>
+        </div>
+        <div th:if="${teams == null or #lists.isEmpty(teams)}" class="text-center error">
+          No teams registered yet. You cannot add any review without creating a team first.
+          <br/>
+        </div>
+        <div class="text-right">
+          <button type="submit" th:disabled="${teams == null or #lists.isEmpty(teams)}" class="btn btn-lg btn-primary">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- /.row -->
+</div>
+</body>
+</html>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -20,41 +21,41 @@ import javax.validation.Valid;
  *
  * @author Loïc Ortola on 11/06/2017
  */
-@RequestMapping({"/add_review.html"})
+@RequestMapping({"/edit_review.html"})
 @Controller
-public class AddReviewController {
+public class EditReviewController {
 
   private static final String ATTR_TEAMS = "teams";
   private static final String ATTR_REVIEW = "review";
-  private static final Logger LOGGER = LoggerFactory.getLogger(AddReviewController.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(EditReviewController.class);
   
   private final TeamService teamService;
   private final ReviewService reviewService;
   private final ReviewMapper reviewMapper;
 
   @Autowired
-  public AddReviewController(TeamService teamService, ReviewService reviewService, ReviewMapper reviewMapper) {
+  public EditReviewController(TeamService teamService, ReviewService reviewService, ReviewMapper reviewMapper) {
     this.teamService = teamService;
     this.reviewService = reviewService;
     this.reviewMapper = reviewMapper;
   }
 
   @GetMapping
-  public String get(Model model) {
-    LOGGER.info("Getting Add Review Panel");
-    model.addAttribute(ATTR_REVIEW, new ReviewFormDto());
+  public String get(@RequestParam Long id, Model model) {
+    LOGGER.info("Getting Edit Review Panel");
+    model.addAttribute(ATTR_REVIEW, reviewMapper.to(reviewService.get(id)));
     model.addAttribute(ATTR_TEAMS, teamService.getAll());
-    return "add_review";
+    return "edit_review";
   }
 
   @PostMapping
   public String add(@Valid @ModelAttribute(ATTR_REVIEW) ReviewFormDto review, BindingResult bindingResult, Model model) {
-    LOGGER.info("Attempt to Add Review");
+    LOGGER.info("Attempt to Update Review");
     if (bindingResult.hasErrors()) {
-      LOGGER.warn("Error while adding review: {}", bindingResult.getAllErrors());
+      LOGGER.warn("Error while updating review: {}", bindingResult.getAllErrors());
       model.addAttribute(ATTR_REVIEW, review);
       model.addAttribute(ATTR_TEAMS, teamService.getAll());
-      return "add_review";
+      return "edit_review";
     }
     reviewService.save(reviewMapper.from(review));
     return "redirect:/";

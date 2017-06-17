@@ -1,7 +1,6 @@
 package io.resourcepool.nextreview.person;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -15,13 +14,12 @@ import java.util.List;
 public class PersonFormDto {
   
   private Long id;
-  @Size(min = 3, max = 64)
+  @Size(min = 2, max = 64)
   private String firstName;
   @Size(min = 3, max = 64)
   private String lastName;
   @Email
   private String email;
-  @NotEmpty
   private List<Long> teams;
   
   public PersonFormDto() {

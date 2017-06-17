@@ -105,6 +105,20 @@ body .footer .logo {
     color: #963434;
 }
 
+.btn-round {
+    border-radius: 50%;
+    padding: 8px;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .team-tag {
     padding: 3px 6px;
     margin-top: 2px;
@@ -118,4 +132,15 @@ body .footer .logo {
     display: inline-block;
 }
 
+.selectable:hover {
+    cursor: pointer;
+}
+
+.selectable:hover .btn-edit {
+    visibility: visible;
+}
+
+.selectable .btn-edit {
+    visibility: hidden;
+}
 /*# sourceMappingURL=style.css.map */

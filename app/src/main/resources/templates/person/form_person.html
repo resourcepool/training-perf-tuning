@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment='form_person(action, edit)'>
+  <div class="row">
+    <div class="col-xs-12">
+      <form action="#" th:action="${action}" th:object="${person}" method="post" class="">
+        <input type="hidden" class="input-lg form-control" id="id" th:field="*{id}"/>
+        <div class="text-right" th:if="${edit}" data-toggle="modal" id="deleteEntity" data-target="#deleteModal"><span class="btn-round btn-lg btn-danger "><i class="fa fa-trash fa-fw"/></span></div>
+        <div class="form-inline">
+          <label for="firstName">First name</label>
+          <br/>
+          <input type="text" class="input-lg form-control" id="firstName" placeholder="First Name"
+                 th:field="*{firstName}"
+                 size="41"/>
+          <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error">Invalid Name</span>
+          <br/>
+          <label for="lastName">Last name</label>
+          <br/>
+          <input type="text" class="input-lg form-control" id="lastName" placeholder="Last Name" th:field="*{lastName}"
+                 size="41"/>
+          <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error">Invalid Name</span>
+        </div>
+        <div class="form-inline">
+          <label for="email">Email</label>
+          <br/>
+          <input type="email" class="input-lg form-control" id="email" placeholder="Email" th:field="*{email}"
+                 size="41"/>
+          <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">Invalid Email</span>
+        </div>
+        <div class="form-group">
+          <label for="teams">Teams</label>
+          <br/>
+          <select id="teams" th:field="*{teams}" multiple="multiple">
+            <option th:each="team : ${teams}" th:text="${team.name}" th:value="${team.id}"
+                    th:selected="${#lists.contains(person.teams, team.id)}"></option>
+          </select>
+          <br/>
+          <span th:if="${#fields.hasErrors('teams')}" th:errors="*{teams}" class="error">Invalid Team</span>
+        </div>
+        <div class="text-right">
+          <button type="submit" class="btn btn-lg btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -9,18 +9,12 @@
 
   <title>NextReview</title>
 
-  <!-- Bootstrap CSS -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet"/>
-  
+  <!-- Project common stylesheets -->
+  <block th:replace="fragments/stylesheets"/>
+
   <!-- Tokenize2 CSS -->
   <link href="../css/tokenize2.min.css" rel="stylesheet" type="text/css"/>
   
-  <!-- Custom CSS -->
-  <link href="../css/style.css" rel="stylesheet"/>
-
-  <!-- Custom Fonts -->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        type="text/css"/>
 </head>
 
 <body>
@@ -82,11 +76,9 @@
 <!-- /#wrapper -->
 <footer th:replace="fragments/footer"/>
 
-<!-- jQuery -->
-<script src="../js/jquery-3.1.1.min.js"></script>
+<!-- Project common scripts -->
+<block th:replace="fragments/scripts"/>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
 <!-- Tokenize 2 Members JavaScript -->
 <script src="../js/tokenize2.min.js"></script>
 <!-- Custom Script to load available members -->
