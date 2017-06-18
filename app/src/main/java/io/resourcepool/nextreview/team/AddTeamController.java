@@ -45,7 +45,7 @@ public class AddTeamController {
     LOGGER.info("Getting Add Team Panel");
     model.addAttribute(ATTR_TEAM, new TeamFormDto());
     model.addAttribute(ATTR_MEMBERS, personService.getAll());
-    return "add_team";
+    return "team/add_team";
   }
   
   @PostMapping
@@ -55,7 +55,7 @@ public class AddTeamController {
       LOGGER.warn("Error while adding team: {}", bindingResult.getAllErrors());
       model.addAttribute(ATTR_TEAM, team);
       model.addAttribute(ATTR_MEMBERS, personService.getAll());
-      return "add_team";
+      return "team/add_team";
     }
     teamService.save(teamMapper.from(team));
     return "redirect:/";

@@ -44,7 +44,7 @@ public class AddReviewController {
     LOGGER.info("Getting Add Review Panel");
     model.addAttribute(ATTR_REVIEW, new ReviewFormDto());
     model.addAttribute(ATTR_TEAMS, teamService.getAll());
-    return "add_review";
+    return "review/add_review";
   }
 
   @PostMapping
@@ -54,7 +54,7 @@ public class AddReviewController {
       LOGGER.warn("Error while adding review: {}", bindingResult.getAllErrors());
       model.addAttribute(ATTR_REVIEW, review);
       model.addAttribute(ATTR_TEAMS, teamService.getAll());
-      return "add_review";
+      return "review/add_review";
     }
     reviewService.save(reviewMapper.from(review));
     return "redirect:/";

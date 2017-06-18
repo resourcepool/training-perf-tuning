@@ -45,7 +45,7 @@ public class EditPersonController {
     LOGGER.info("Getting Edit Person Panel");
     model.addAttribute(ATTR_PERSON, personMapper.to(personService.get(id)));
     model.addAttribute(ATTR_TEAMS, teamService.getAll());
-    return "edit_person";
+    return "person/edit_person";
     
   }
 
@@ -56,7 +56,7 @@ public class EditPersonController {
       LOGGER.warn("Error while updating person: {}", bindingResult.getAllErrors());
       model.addAttribute(ATTR_PERSON, person);
       model.addAttribute(ATTR_TEAMS, teamService.getAll());
-      return "edit_person";
+      return "person/edit_person";
     }
     personService.save(personMapper.from(person));
     return "redirect:/";

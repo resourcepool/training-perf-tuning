@@ -1,3 +1,16 @@
+$themeBlue: #44adff;
+$themeBlueLight: #86c7ff;
+$themeDarkGrey: #222;
+$themeGrey: #333;
+$themeLightGrey: #555;
+$themeVeryLightGrey: #595959;
+$themeOrange: #E5AD1A;
+$themeGreen: #8dc95f;
+$themeTextPrimary: #eee;
+$themeTextSecondary: #ccc;
+$themeTextTertiary: #ababab;
+$themeError: #963434;
+
 * {
   margin: 0;
   padding: 0;
@@ -8,24 +21,27 @@ html {
   height: 100%;
 }
 
+.form-control {
+  background-color: $themeVeryLightGrey;
+  color: $themeTextPrimary;
+}
+
 body {
   height: 100%;
-
-  #wrapper {
-    min-height: 100%;
-    margin-bottom: -90px;
-
-    &:after {
-      content: "";
-      display: block;
-      height: 90px;
-    }
-  }
-
+  // Navbar
   .navbar {
     height: 50px;
+    // Nav link background
+    .nav li a {
+      &:hover, &:focus {
+        background-color: $themeVeryLightGrey !important;
+      }
+    }
     ul.navbar-top-links {
       height: 100%;
+      &:hover {
+        background-color: $themeVeryLightGrey !important;
+      }
       li.dropdown {
         display: inline-block;
         height: 100%;
@@ -46,6 +62,77 @@ body {
       }
     }
   }
+  .navbar-default {
+    background-color: $themeLightGrey;
+    // Project name in Navbar (left)
+    .navbar-brand {
+      color: $themeTextSecondary;
+      &:hover {
+        color: $themeTextPrimary;
+      }
+    }
+  }
+  // Dropdown menu
+  .dropdown-menu {
+    background-color: $themeGrey;
+    > li > a {
+      color: $themeBlue;
+      &:hover {
+        color: $themeBlueLight;
+        cursor: pointer;
+      }
+    }
+  }
+  // Link default decoration
+  a {
+    &:hover, &:focus {
+      color: $themeBlueLight;
+      cursor: pointer;
+    }
+    color: $themeBlue;
+  }
+
+  // Panel background
+  .panel-default {
+    background-color: $themeLightGrey;
+  }
+  .panel-heading {
+    background-color: $themeGrey;
+  }
+
+  // Edit Button visibility on table row hover
+  .table-hover > tbody > tr {
+    background-color: $themeGrey;
+    &:hover {
+      .btn-edit {
+        visibility: visible;
+      }
+    }
+  }
+  // Table Stripes
+  .table-striped > tbody {
+    background-color: $themeGrey;
+    > tr:nth-of-type(2n+1) {
+      background-color: lighten($themeGrey, 10);
+    }
+    > tr:hover {
+      background-color: $themeVeryLightGrey;
+    }
+  }
+  // Default colors
+  background-color: $themeGrey;
+  color: $themeTextPrimary;
+
+  #wrapper {
+    min-height: 100%;
+    margin-bottom: -90px;
+
+    &:after {
+      content: "";
+      display: block;
+      height: 90px;
+    }
+  }
 
   .huge {
     font-size: 3em;
@@ -56,34 +143,119 @@ body {
     line-height: 1em;
   }
 
-  .panel-green {
-    border-color: #0C0;
+  // Panels
+
+  // Used for dashboard panel
+  .panel.squared {
+    border-radius: 0 0 4px 4px;
+    border-top: none;
+  }
+  // Used for admin panel
+  .panel-primary {
     .panel-heading {
-      color: white;
-      background-color: #8dc95f;
+      color: $themeTextPrimary;
+    }
+  }
+  // Used for admin panel
+  .panel-green {
+    border-color: lighten($themeGreen, 20);
+    .panel-heading {
+      color: $themeTextPrimary;
+      background-color: $themeGreen;
+    }
+  }
+  // Used for admin panel
+  .panel-yellow {
+    border-color: lighten($themeOrange, 20);
+    .panel-heading {
+      color: $themeTextPrimary;
+      background-color: $themeOrange;
     }
   }
 
-  .panel-yellow {
-    border-color: #F60;
-    .panel-heading {
+  .panel-default > .panel-heading {
+    background-color: $themeLightGrey;
+    color: $themeTextPrimary;
+  }
+  .panel-body {
+    background-color: $themeDarkGrey;
+  }
+  .panel-footer {
+    background-color: $themeGrey;
+    color: $themeTextPrimary;
+    &:hover {
+      background-color: $themeVeryLightGrey;
+    }
+  }
+  // Used for dashboard panel
+  .review-name {
+    font-weight: bold;
+    color: $themeBlue;
+    &.fullscreen {
+      font-size: 2.6em;
+    }
+  }
+  .review-team {
+    color: $themeTextPrimary;
+    &.fullscreen {
+      font-size: 2em;
+    }
+  }
+  .review-description {
+    color: $themeTextSecondary;
+    &.fullscreen {
+      font-size: 1.6em;
+
+    }
+  }
+  .review-date {
+    color: $themeOrange;
+    &.fullscreen {
+      font-size: 2em;
+    }
+  }
+
+  .btn-default {
+    color: $themeTextPrimary;
+    background-color: $themeGrey;
+    &:hover, &:focus {
       color: white;
-      background-color: #E5AD1A;
+      background-color: $themeVeryLightGrey;
+    }
+  }
+  .btn-round {
+    border-radius: 50%;
+    padding: 5px;
+    &:hover, &:focus {
+      cursor: pointer;
+    }
+  }
+  .pagination {
+    > li > a, > li > span {
+      color: $themeBlue;
+      background-color: $themeGrey;
+      &:hover, &:focus {
+        color: white;
+        background-color: $themeVeryLightGrey;
+      }
+    }
+    >.active >a, >.active > span {
+      border-color: white;
+      &:hover, &:focus {
+        border-color: white;
+      }
+    }
+    >.disabled > a, >.disabled > span {
+      background-color: $themeGrey;
+      &:hover, &:focus {
+        background-color: $themeGrey;
+      }
     }
   }
   
-  .review-name {
-    font-weight: bold;
-  }
-  
-  .review-team {
-    color: darkgrey;
-  }
-  
   .error {
-    color: #963434;
+    color: $themeError;
   }
-  
   .team-tag {
     padding: 3px 6px;
     margin-top: 2px;
@@ -101,17 +273,23 @@ body {
     bottom: 0;
     width: 100%;
     height: 90px;
-    background-color: #f5f5f5;
     padding: 20px;
-
     .logo {
       height: 40px;
     }
-
+  }
+  
+  .list-group-item {
+    background-color: $themeGrey;
+    color: $themeTextSecondary;
+    &:hover, &:focus, &:active {
+      color: white;
+      background-color: $themeVeryLightGrey;
+    }
   }
 
   .selectable {
-    :hover {
+    &:hover {
       cursor: pointer;
       .btn-edit {
         visibility: visible;
@@ -120,7 +298,19 @@ body {
     .btn-edit {
       visibility: hidden;
     }
-    
+  }
+  
+  // Tokenize2
+  .tokenize > .tokens-container > .token {
+    background-color: $themeBlue;
+    border-color: lighten($themeBlue, 20);
+    border-radius: 4px;
   }
 
+  .tokenize > .tokens-container > .placeholder, .tokenize > .tokens-container > .token-search {
+    border-color: transparent;
+  }
+  .tokenize > .tokens-container > .token-search > input {
+    border-color: transparent;
+  }
 }

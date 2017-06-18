@@ -45,7 +45,7 @@ public class EditReviewController {
     LOGGER.info("Getting Edit Review Panel");
     model.addAttribute(ATTR_REVIEW, reviewMapper.to(reviewService.get(id)));
     model.addAttribute(ATTR_TEAMS, teamService.getAll());
-    return "edit_review";
+    return "review/edit_review";
   }
 
   @PostMapping
@@ -55,7 +55,7 @@ public class EditReviewController {
       LOGGER.warn("Error while updating review: {}", bindingResult.getAllErrors());
       model.addAttribute(ATTR_REVIEW, review);
       model.addAttribute(ATTR_TEAMS, teamService.getAll());
-      return "edit_review";
+      return "review/edit_review";
     }
     reviewService.save(reviewMapper.from(review));
     return "redirect:/";

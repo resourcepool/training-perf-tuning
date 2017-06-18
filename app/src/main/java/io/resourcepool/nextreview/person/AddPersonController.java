@@ -44,7 +44,7 @@ public class AddPersonController {
     LOGGER.info("Getting Add Person Panel");
     model.addAttribute(ATTR_PERSON, new PersonFormDto());
     model.addAttribute(ATTR_TEAMS, teamService.getAll());
-    return "add_person";
+    return "person/add_person";
     
   }
 
@@ -55,7 +55,7 @@ public class AddPersonController {
       LOGGER.warn("Error while adding person: {}", bindingResult.getAllErrors());
       model.addAttribute(ATTR_PERSON, person);
       model.addAttribute(ATTR_TEAMS, teamService.getAll());
-      return "add_person";
+      return "person/add_person";
     }
     personService.save(personMapper.from(person));
     return "redirect:/";

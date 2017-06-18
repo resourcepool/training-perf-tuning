@@ -3,6 +3,8 @@ package io.resourcepool.nextreview.review;
 import io.resourcepool.nextreview.common.model.Review;
 import io.resourcepool.nextreview.persistence.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -32,4 +34,7 @@ public class ReviewService {
     reviewRepository.delete(id);
   }
 
+  public Page<Review> getAll(PageRequest request) {
+    return reviewRepository.findAll(request);
+  }
 }

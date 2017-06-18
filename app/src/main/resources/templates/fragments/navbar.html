@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<nav th:fragment="navbar" class="navbar navbar-default navbar-static-top container-fluid" role="navigation" style="margin-bottom: 0">
+<nav th:fragment="navbar(showMenu)" class="navbar navbar-default navbar-static-top container-fluid" role="navigation" style="margin-bottom: 0">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
@@ -12,12 +12,14 @@
   </div>
   <!-- /.navbar-header -->
 
-  <ul class="nav navbar-top-links navbar-right">
+  <ul class="nav navbar-top-links navbar-right" th:if="${showMenu}">
     <li class="dropdown">
       <a class="dropdown-toggle navlink" data-toggle="dropdown" href="#">
         <i class="fa fa-gear fa-fw"></i> Manage <i class="fa fa-caret-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-user">
+        <li><a href="dashboard"><i class="fa fa-tv fa-fw"></i> Go to Dashboard</a>
+        </li>
         <li><a href="add_team.html"><i class="fa fa-users fa-fw"></i> Add Team</a>
         </li>
         <li><a href="add_person.html"><i class="fa fa-user fa-fw"></i> Add Person</a>

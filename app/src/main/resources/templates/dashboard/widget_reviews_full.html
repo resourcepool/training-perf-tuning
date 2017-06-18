@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body class="dark">
+<div th:fragment='widget_reviews'>
+  <div class="panel panel-default squared">
+    <div class="panel-body">
+      <div th:if="${reviews == null or #lists.isEmpty(reviews.content)}" class="text-center">
+        No review currently scheduled
+        <br/><br/>
+      </div>
+      <table class="table table-hover table-striped" th:if="${reviews != null}">
+        <tr th:each="review : ${reviews.content}" class="selectable" th:onclick="'editReview(' + ${review.id} + ')'">
+          <td>
+            <span th:text="${review.name}" class="review-name fullscreen"/>
+            <br/>
+            <span th:text="${review.team.name}" class="review-team fullscreen"/>
+            <br/>
+            <span th:text="${review.description}" class="review-description fullscreen"/>
+          </td>
+          <td class="text-right">
+            <div style="position:relative;">
+              <div style="position:absolute; top:0; right:0;">
+                <span class="review-date fullscreen" th:text="${{review.scheduledDateTime}}"></span>
+              </div>
+              <div style="position:absolute; top:0; right:0;">
+                <span class="btn btn-sm btn-warning btn-edit"><i class="fa fa-pencil"></i> Edit</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- /.panel-body -->
+  </div>
+</div>
+</body>
+</html>

@@ -45,7 +45,7 @@ public class EditTeamController {
     LOGGER.info("Getting Edit Team Panel");
     model.addAttribute(ATTR_TEAM, teamMapper.to(teamService.get(id)));
     model.addAttribute(ATTR_MEMBERS, personService.getAll());
-    return "edit_team";
+    return "team/edit_team";
   }
 
   @PostMapping
@@ -55,7 +55,7 @@ public class EditTeamController {
       LOGGER.warn("Error while updating team: {}", bindingResult.getAllErrors());
       model.addAttribute(ATTR_TEAM, team);
       model.addAttribute(ATTR_MEMBERS, personService.getAll());
-      return "edit_team";
+      return "team/edit_team";
     }
     teamService.save(teamMapper.from(team));
     return "redirect:/";
