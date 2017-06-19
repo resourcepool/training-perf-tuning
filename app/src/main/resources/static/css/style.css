@@ -13,6 +13,9 @@ html {
 .text-tertiary {
   color: #ababab; }
 
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+  border-color: #6f6f6f; }
+
 body {
   height: 100%;
   background-color: #333;
@@ -127,7 +130,8 @@ body {
       font-size: 2em; }
   body .btn-default {
     color: #dedede;
-    background-color: #333; }
+    background-color: #333;
+    border-color: #6f6f6f; }
     body .btn-default:hover, body .btn-default:focus {
       color: white;
       background-color: #595959; }
@@ -173,7 +177,8 @@ body {
       height: 40px; }
   body .list-group-item {
     background-color: #333;
-    color: #ccc; }
+    color: #ccc;
+    border-color: #6f6f6f; }
     body .list-group-item:hover, body .list-group-item:focus, body .list-group-item:active {
       color: white;
       background-color: #595959; }

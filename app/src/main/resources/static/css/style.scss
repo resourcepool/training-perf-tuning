@@ -31,6 +31,10 @@ html {
   color: $themeTextTertiary;
 }
 
+.table thead>tr>th,.table tbody>tr>th,.table tfoot>tr>th,.table thead>tr>td,.table tbody>tr>td,.table tfoot>tr>td{
+  border-color: $themeBorder;
+}
+
 body {
   height: 100%;
   // Navbar
@@ -225,6 +229,7 @@ body {
   .btn-default {
     color: $themeTextPrimary;
     background-color: $themeGrey;
+    border-color: $themeBorder;
     &:hover, &:focus {
       color: white;
       background-color: $themeVeryLightGrey;
@@ -291,6 +296,7 @@ body {
   .list-group-item {
     background-color: $themeGrey;
     color: $themeTextSecondary;
+    border-color: $themeBorder;
     &:hover, &:focus, &:active {
       color: white;
       background-color: $themeVeryLightGrey;
