@@ -25,7 +25,7 @@ public class MainPanelController {
   private static final String ATTR_ENVELOPE = "panel";
   private static final String ATTR_REVIEWS = "reviews";
   private static final int PAGE_SIZE = 10;
-  private static final String DASHBOARD_SIZE = "3"; 
+  private static final String DASHBOARD_SIZE = "5"; 
   
   private final DashboardService service;
   private final ReviewService reviewService;

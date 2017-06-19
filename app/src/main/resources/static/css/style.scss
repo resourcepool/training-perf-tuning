@@ -4,9 +4,10 @@ $themeDarkGrey: #222;
 $themeGrey: #333;
 $themeLightGrey: #555;
 $themeVeryLightGrey: #595959;
-$themeOrange: #E5AD1A;
-$themeGreen: #8dc95f;
-$themeTextPrimary: #eee;
+$themeBorder: lighten($themeDarkGrey, 30);
+$themeOrange: #cc941a;
+$themeGreen: #6b9b4e;
+$themeTextPrimary: #dedede;
 $themeTextSecondary: #ccc;
 $themeTextTertiary: #ababab;
 $themeError: #963434;
@@ -24,6 +25,10 @@ html {
 .form-control {
   background-color: $themeVeryLightGrey;
   color: $themeTextPrimary;
+}
+
+.text-tertiary {
+  color: $themeTextTertiary;
 }
 
 body {
@@ -64,6 +69,7 @@ body {
   }
   .navbar-default {
     background-color: $themeLightGrey;
+    border-color: $themeBorder;
     // Project name in Navbar (left)
     .navbar-brand {
       color: $themeTextSecondary;
@@ -95,6 +101,7 @@ body {
   // Panel background
   .panel-default {
     background-color: $themeLightGrey;
+    border-color: $themeBorder;
   }
   .panel-heading {
     background-color: $themeGrey;
@@ -147,8 +154,8 @@ body {
 
   // Used for dashboard panel
   .panel.squared {
-    border-radius: 0 0 4px 4px;
-    border-top: none;
+    border-radius: 0 0 16px 16px;
+    
   }
   // Used for admin panel
   .panel-primary {
@@ -256,6 +263,7 @@ body {
   .error {
     color: $themeError;
   }
+  
   .team-tag {
     padding: 3px 6px;
     margin-top: 2px;
@@ -263,9 +271,10 @@ body {
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
-    color: #333;
-    background-color: #ddd;
-    border-color: #c1c1c1;
+    color: $themeTextSecondary;
+    background-color: $themeGrey;
+    border: 1px solid;
+    border-color: $themeVeryLightGrey;
     display: inline-block;
   }
 

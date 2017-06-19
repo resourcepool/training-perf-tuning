@@ -19,7 +19,7 @@
 <div id="wrapper">
 
   <!-- Navigation -->
-  <nav th:replace="fragments/navbar :: navbar(true)"/>
+  <nav th:replace="fragments/navbar :: navbar(true, false)"/>
 
   <div id="page-wrapper" class="container-fluid">
     <div class="row">
@@ -122,7 +122,7 @@
                     <tbody th:if="${panel.members != null}">
                     <tr th:each="member : ${panel.members.content}" class="selectable" th:onclick="'editPerson(' + ${member.id} + ')'">
                       <td><span th:text="${member.firstName} + ' ' + ${member.lastName}"/></td>
-                      <td><span th:text="${member.email}"/></td>
+                      <td><span th:text="${member.email}" class="text-tertiary"/></td>
                       <td>
                         <span class="team-tag" th:each="team : ${member.teams}" th:text="${team.name}"/>&nbsp;
                       </td>

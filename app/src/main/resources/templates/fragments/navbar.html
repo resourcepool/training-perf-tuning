@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<nav th:fragment="navbar(showMenu)" class="navbar navbar-default navbar-static-top container-fluid" role="navigation" style="margin-bottom: 0">
+<nav th:fragment="navbar(showMenu, fixTop)" th:class="'navbar navbar-default ' + ${fixTop ? 'navbar-fixed-top' : 'navbar-static-top'} + ' container-fluid'" role="navigation" style="margin-bottom: 0">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
