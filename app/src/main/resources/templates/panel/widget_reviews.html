@@ -29,6 +29,9 @@
           </td>
         </tr>
       </table>
+      <div class="text-center" th:if="${panel.nextReviews != null}">
+        <div th:replace="fragments/pagination :: pagination (parameter = 'reviewPage', page = ${panel.nextReviews})"/>
+      </div>
       <a href="/add_review.html" class="btn btn-default btn-block">Schedule Review</a>
     </div>
     <!-- /.panel-body -->

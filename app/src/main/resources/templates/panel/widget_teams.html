@@ -24,6 +24,9 @@
         There are no teams. None.
         <br/><br/>
       </div>
+      <div class="text-center" th:if="${panel.teams != null}">
+        <div th:replace="fragments/pagination :: pagination (parameter = 'teamPage', page = ${panel.teams})"/>
+      </div>
       <!-- /.list-group -->
       <a href="#" class="btn btn-default btn-block">Add a Team</a>
     </div>

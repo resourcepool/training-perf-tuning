@@ -1,12 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <!-- Pagination Bar -->
-<div th:fragment='pagination'>
+<span th:fragment='pagination'>
   <div th:if="${not (page eq null or page.totalPages lt 1)}">
-    <ul class="pagination (page)">
+    <ul class="pagination (parameter, page)">
       <li th:class="${page.number eq 0} ? 'disabled' : ''">
         <a th:if="${not page.first}"
-           th:href="@{${'/'}(page=${page.number-1},size=${page.size})}">Previous</a>
+           th:href="@{${'/'}(${parameter}=${page.number-1})}">Previous</a>
         <a th:if="${page.first}" href="javascript:void(0);">Previous</a>
       </li>
       <li th:each="pageNo : ${#numbers.sequence(0, T(Math).max(0, page.totalPages - 1))}"
@@ -14,16 +14,16 @@
         <a th:if="${page.number  eq pageNo}" href="javascript:void(0);">
           <span th:text="${pageNo + 1}"></span>
         </a>
-        <a th:if="${not (page.number  eq pageNo)}" th:href="@{${'/'}(page=${pageNo},size=${page.size})}">
+        <a th:if="${not (page.number  eq pageNo)}" th:href="@{${'/'}(${parameter}=${pageNo})}">
           <span th:text="${pageNo + 1}"></span>
         </a>
       </li>
       <li th:class="${page.number + 1 ge page.totalPages} ? 'disabled' : ''">
-        <a th:if="${not page.last}" th:href="@{${'/'}(page=${page.number+1},size=${page.size})}">Next</a>
+        <a th:if="${not page.last}" th:href="@{${'/'}(${parameter}=${page.number+1})}">Next</a>
         <a th:if="${page.last}" href="javascript:void(0);">Next</a>
       </li>
     </ul>
   </div>
-</div>
+</span>
 </body>
 </html>

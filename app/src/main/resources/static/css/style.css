@@ -13,6 +13,12 @@ html {
 .text-tertiary {
   color: #ababab; }
 
+.modal-content {
+  background-color: #222; }
+
+.table, .list-group {
+  margin-bottom: 6px !important; }
+
 .table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
   border-color: #6f6f6f; }
 
@@ -140,22 +146,24 @@ body {
     padding: 5px; }
     body .btn-round:hover, body .btn-round:focus {
       cursor: pointer; }
-  body .pagination > li > a, body .pagination > li > span {
-    color: #44adff;
-    background-color: #333; }
-    body .pagination > li > a:hover, body .pagination > li > a:focus, body .pagination > li > span:hover, body .pagination > li > span:focus {
-      color: white;
-      background-color: #595959; }
-  body .pagination > .active > a, body .pagination > .active > span {
-    border-color: white; }
-    body .pagination > .active > a:hover, body .pagination > .active > a:focus, body .pagination > .active > span:hover, body .pagination > .active > span:focus {
-      border-color: white; }
-  body .pagination > .disabled > a, body .pagination > .disabled > span {
-    background-color: #333; }
-    body .pagination > .disabled > a:hover, body .pagination > .disabled > a:focus, body .pagination > .disabled > span:hover, body .pagination > .disabled > span:focus {
+  body .pagination {
+    margin: 0 !important; }
+    body .pagination > li > a, body .pagination > li > span {
+      color: #44adff;
       background-color: #333; }
+      body .pagination > li > a:hover, body .pagination > li > a:focus, body .pagination > li > span:hover, body .pagination > li > span:focus {
+        color: white;
+        background-color: #595959; }
+    body .pagination > .active > a, body .pagination > .active > span {
+      border-color: white; }
+      body .pagination > .active > a:hover, body .pagination > .active > a:focus, body .pagination > .active > span:hover, body .pagination > .active > span:focus {
+        border-color: white; }
+    body .pagination > .disabled > a, body .pagination > .disabled > span {
+      background-color: #333; }
+      body .pagination > .disabled > a:hover, body .pagination > .disabled > a:focus, body .pagination > .disabled > span:hover, body .pagination > .disabled > span:focus {
+        background-color: #333; }
   body .error {
-    color: #963434; }
+    color: #ec5050; }
   body .team-tag {
     padding: 3px 6px;
     margin-top: 2px;

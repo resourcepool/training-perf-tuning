@@ -1,10 +1,11 @@
 package io.resourcepool.nextreview.persistence;
 
 import io.resourcepool.nextreview.common.model.Review;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.time.ZonedDateTime;
-import java.util.List;
 
 /**
  * Represents the repository for reviews.
@@ -15,9 +16,10 @@ public interface ReviewRepository extends PagingAndSortingRepository<Review, Lon
 
   /**
    * @param scheduledDateTime the present moment
+   * @param request the page request
    * @return the 3 next reviews in time
    */
-  List<Review> findFirst3ByScheduledDateTimeAfterOrderByScheduledDateTimeAsc(ZonedDateTime scheduledDateTime);
+  Page<Review> findByScheduledDateTimeAfter(ZonedDateTime scheduledDateTime, Pageable request);
   
   /**
    * @param scheduledDateTime the present moment

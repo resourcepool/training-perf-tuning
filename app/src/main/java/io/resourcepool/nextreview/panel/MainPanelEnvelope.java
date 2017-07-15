@@ -1,4 +1,4 @@
-package io.resourcepool.nextreview.dashboard;
+package io.resourcepool.nextreview.panel;
 
 import io.resourcepool.nextreview.common.model.Person;
 import io.resourcepool.nextreview.common.model.Review;
@@ -15,8 +15,8 @@ public class MainPanelEnvelope {
   private Long membersCount;
   private Long scheduledReviewsCount;
   private Page<Person> members;
-  private Iterable<Review> nextReviews;
-  private Iterable<Team> teams;
+  private Page<Review> nextReviews;
+  private Page<Team> teams;
 
   public Long getTeamCount() {
     return teamCount;
@@ -50,19 +50,19 @@ public class MainPanelEnvelope {
     this.members = members;
   }
 
-  public Iterable<Review> getNextReviews() {
+  public Page<Review> getNextReviews() {
     return nextReviews;
   }
 
-  public void setNextReviews(Iterable<Review> nextReviews) {
+  public void setNextReviews(Page<Review> nextReviews) {
     this.nextReviews = nextReviews;
   }
 
-  public Iterable<Team> getTeams() {
+  public Page<Team> getTeams() {
     return teams;
   }
 
-  public void setTeams(Iterable<Team> teams) {
+  public void setTeams(Page<Team> teams) {
     this.teams = teams;
   }
 
@@ -115,8 +115,8 @@ public class MainPanelEnvelope {
     private Long membersCount;
     private Long scheduledReviewsCount;
     private Page<Person> members;
-    private Iterable<Review> nextReviews;
-    private Iterable<Team> teams;
+    private Page<Review> nextReviews;
+    private Page<Team> teams;
 
     private Builder() {
     }
@@ -142,12 +142,12 @@ public class MainPanelEnvelope {
       return this;
     }
 
-    public Builder nextReviews(Iterable<Review> nextReviews) {
+    public Builder nextReviews(Page<Review> nextReviews) {
       this.nextReviews = nextReviews;
       return this;
     }
 
-    public Builder teams(Iterable<Team> teams) {
+    public Builder teams(Page<Team> teams) {
       this.teams = teams;
       return this;
     }
