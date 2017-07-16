@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
+
 /**
  * TODO class details.
  *
@@ -35,6 +37,6 @@ public class ReviewService {
   }
 
   public Page<Review> getAll(PageRequest request) {
-    return reviewRepository.findAll(request);
+    return reviewRepository.findByScheduledDateTimeAfter(ZonedDateTime.now(), request);
   }
 }
