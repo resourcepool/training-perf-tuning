@@ -11,11 +11,14 @@ object AddReview {
 
   val feederAdd = csv("data/reviews.csv").random
 
+  val minWait = config.getInt("application.waitTime.addReview.min")
+  val maxWait = config.getInt("application.waitTime.addReview.max")
+  
   val add = exec {
-    http("Add: Add Review Page")
+    http("AddReview: Browse add review page")
       .get("/add_review.html").check(status.is(200))
   }.exitHereIfFailed
-    .pause(5, 15)
+    .pause(minWait, maxWait)
     .feed(feederAdd)
     .exec {
       http("Add: Post new Review")

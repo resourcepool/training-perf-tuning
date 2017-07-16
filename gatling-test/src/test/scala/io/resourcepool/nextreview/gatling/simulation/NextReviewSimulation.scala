@@ -28,7 +28,7 @@ class NextReviewSimulation extends Simulation {
 
   val browseDashboardScenario = scenario("Browse").exec(BrowseDashboard.browse)
 
-  val browseAddPersonTeamAndReviewScenario = scenario("BrowseAddPersonAndTeam").exec(BrowseAdminPanel.browse, AddPerson.add, AddTeam.add, AddReview.add)
+  val browseAddPersonTeamAndReviewScenario = scenario("BrowseAddPersonAndTeam").exec(BrowseAdminPanel.browse, AddPerson.add, AddPerson.add, AddTeam.add, AddReview.add)
 
   setUp(
     // 90 % of browse

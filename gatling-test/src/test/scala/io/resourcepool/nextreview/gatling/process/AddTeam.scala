@@ -17,15 +17,17 @@ object AddTeam {
   val teamCounter = new java.util.concurrent.atomic.AtomicInteger(config.getInt("application.db.initialTeamCount")) // DB team count
   
   val feederAdd = csv("data/teams.csv").random
-
+  val minWait = config.getInt("application.waitTime.addTeam.min")
+  val maxWait = config.getInt("application.waitTime.addTeam.max")
+  
   val add = exec {
-    http("Add: Add Team Page")
+    http("AddTeam: Browse add team page")
       .get("/add_team.html").check(status.is(200))
   }.exitHereIfFailed
-    .pause(8, 24)
+    .pause(minWait, maxWait)
     .feed(feederAdd)
     .exec {
-      http("Add: Add post")
+      http("AddTeam: Post new Team")
         .post("/add_team.html")
         .formParam("name", "${name}")
         .multivaluedFormParam("members", session => {
