@@ -49,13 +49,13 @@ public class MainPanelPageRequest {
 
   private static int getValidPageOrDefault(HttpServletRequest request, String param) {
     String parameter = request.getParameter(param);
-    if (parameter != null && isValidNumber(parameter)) {
+    if (parameter != null && !parameter.trim().isEmpty() && isValidNumber(parameter)) {
       return Integer.parseInt(parameter);
     }
     return 0;
   }
 
   private static boolean isValidNumber(String s) {
-    return s != null && s.matches("\\d*");
+    return s != null && s.matches("\\d+");
   }
 }

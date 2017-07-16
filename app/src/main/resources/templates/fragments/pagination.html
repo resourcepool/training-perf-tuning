@@ -6,7 +6,7 @@
     <ul class="pagination (parameter, page)">
       <li th:class="${page.number eq 0} ? 'disabled' : ''">
         <a th:if="${not page.first}"
-           th:href="@{${'/'}(${parameter}=${page.number-1})}">Previous</a>
+           th:href="@{${'/'}(reviewPage=${parameter == 'reviewPage' ? page.number - 1 : param.reviewPage},personPage=${parameter == 'personPage' ? page.number - 1 : param.personPage},personPage=${parameter == 'teamPage' ? page.number - 1 : param.teamPage})}">Previous</a>
         <a th:if="${page.first}" href="javascript:void(0);">Previous</a>
       </li>
       <li th:each="pageNo : ${#numbers.sequence(0, T(Math).max(0, page.totalPages - 1))}"
@@ -14,12 +14,12 @@
         <a th:if="${page.number  eq pageNo}" href="javascript:void(0);">
           <span th:text="${pageNo + 1}"></span>
         </a>
-        <a th:if="${not (page.number  eq pageNo)}" th:href="@{${'/'}(${parameter}=${pageNo})}">
+        <a th:if="${not (page.number  eq pageNo)}" th:href="@{${'/'}(reviewPage=${parameter == 'reviewPage' ? pageNo : param.reviewPage},personPage=${parameter == 'personPage' ? pageNo : param.personPage},personPage=${parameter == 'teamPage' ? pageNo : param.teamPage})}">
           <span th:text="${pageNo + 1}"></span>
         </a>
       </li>
       <li th:class="${page.number + 1 ge page.totalPages} ? 'disabled' : ''">
-        <a th:if="${not page.last}" th:href="@{${'/'}(${parameter}=${page.number+1})}">Next</a>
+        <a th:if="${not page.last}" th:href="@{${'/'}(reviewPage=${parameter == 'reviewPage' ? page.number + 1 : param.reviewPage},personPage=${parameter == 'personPage' ? page.number + 1 : param.personPage},personPage=${parameter == 'teamPage' ? page.number + 1 : param.teamPage})}">Next</a>
         <a th:if="${page.last}" href="javascript:void(0);">Next</a>
       </li>
     </ul>
